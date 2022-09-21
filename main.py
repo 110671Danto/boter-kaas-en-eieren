@@ -3,6 +3,24 @@ from bke import EvaluationAgent, start, can_win, RandomAgent
 
 gamestate = 1
 
+def menu(): 
+  print("druk op 1 om het spel te start")
+
+while True:
+  print("a: start spel")
+  print("b: tegen een domme tegenstander")
+  print("c: doe zo")
+  i = input()  
+  
+  if i == "a":
+    print("You pressed 'a'.")
+    gamestate = 1
+    break
+  if i == "b":
+    print("You pressed 'b'.")
+    gamestate = 2
+    break
+menu()
 
 class MijnSpeler(EvaluationAgent):
   def evaluate(self, board, my_symbol, opponent_symbol):
@@ -33,5 +51,5 @@ if  gamestate == 1:
 
 print(results)
   
-def menu(): 
-  print("druk op 1 om het spel te start")
+if gamestate == 2:
+  start()
