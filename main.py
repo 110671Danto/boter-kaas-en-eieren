@@ -8,8 +8,8 @@ def menu():
 
 while True:
   print("a: start spel")
-  print("b: tegen een domme tegenstander")
-  print("c: doe zo")
+  print("b: tegen een andere persoon")
+  print("c: tegen een domme tegenstander")
   i = input()  
   
   if i == "a":
@@ -19,6 +19,10 @@ while True:
   if i == "b":
     print("You pressed 'b'.")
     gamestate = 2
+    break
+  if i == "c":
+    print("You pressed 'c'.")
+    gamestate = 3
     break
 menu()
 
@@ -53,3 +57,6 @@ print(results)
   
 if gamestate == 2:
   start()
+
+if gamestate == 3:
+  start(player_o = my_random_agent)
