@@ -1,5 +1,5 @@
 import random
-from bke import EvaluationAgent, start, can_win, RandomAgent
+from bke import EvaluationAgent, start, can_win, RandomAgent, MLAgent
 
 gamestate = 1
 
@@ -10,6 +10,7 @@ while True:
   print("a: start spel")
   print("b: tegen een andere persoon")
   print("c: tegen een domme tegenstander")
+  print("d: tegen een slimme tegenstander")
   i = input()  
   
   if i == "a":
@@ -23,6 +24,14 @@ while True:
   if i == "c":
     print("You pressed 'c'.")
     gamestate = 3
+    break
+  if i == "d":
+    print("You pressed 'd'.")
+    gamestate = 4
+    break
+  if i == "e":
+    print("You pressed 'e'.")
+    gamestate = 5
     break
 menu()
 
@@ -54,9 +63,22 @@ if  gamestate == 1:
       results["None"] += 1
 
 print(results)
-  
+
+class LearningAgent(MLAgent):
+  def evaluate(self, board, my_symbol, opponent_symbol):
+    getal = 1
+    return getal
+    
+learningagent = LearningAgent
+
 if gamestate == 2:
   start()
 
 if gamestate == 3:
   start(player_o = my_random_agent)
+
+if gamestate == 4:
+  start(player_o = mijn_speler)
+
+if gamestate == 5: 
+  start(player_o = learningagent)
