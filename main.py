@@ -1,5 +1,5 @@
 import random
-from bke import EvaluationAgent, start, can_win, RandomAgent, MLAgent, is_winner, opponent, train, save
+from bke import EvaluationAgent, start, can_win, RandomAgent, MLAgent, is_winner, opponent, train, save, load, validate, RandomAgent, plot_validation
 
 gamestate = 1
 
@@ -11,7 +11,10 @@ while True:
   print("b: tegen een andere persoon")
   print("c: tegen een domme tegenstander")
   print("d: tegen een slimme tegenstander")
-  print("e: tegen een getrainde tegenstander")
+  print("e: tegenstander later trainen")
+  print("f: tegen een getrainde tegenstander")
+  print("g: zien hoe goed getrainde tegenstander is")
+  print("h: tegen een getrainde tegenstander")
   i = input()  
   
   if i == "a":
@@ -33,6 +36,18 @@ while True:
   if i == "e":
     print("You pressed 'e'.")
     gamestate = 5
+    break
+  if i == "f":
+    print("You pressed 'f'.")
+    gamestate = 6
+    break
+  if i == "g":
+    print("You pressed 'f'.")
+    gamestate = 7
+    break
+  if i == "h":
+    print("You pressed 'f'.")
+    gamestate = 8
     break
 menu()
 
@@ -66,7 +81,7 @@ if  gamestate == 1:
 
 print(results)
 
-
+ 
 class MyAgent(MLAgent):
   def evaluate(self, board):
     
@@ -81,7 +96,7 @@ class MyAgent(MLAgent):
 
     return reward
 
-myagent = MyAgent()      
+my_agent = MyAgent()      
 
 if gamestate == 2:
   start()
@@ -93,4 +108,17 @@ if gamestate == 4:
   start(player_o = mijn_speler)
 
 if gamestate == 5: 
-  start(player_o = myagent)
+  train(my_agent, 3000)
+  save(my_agent, 'MyAgent_3000')
+
+if  gamestate == 6:
+  my_agent = load('MyAgent_3000')
+  my_agent.learning = False
+  start(player_x=my_agent)
+
+if gamestate == 7: 
+  my_agent = load('MyAgent_3000')
+  my_agent.learning = False
+  validation_agent = RandomAgent()
+  validation_result = validate(agent_x=my_agent, agent_o=validation_agent, iterations=100)
+  plot_validation(validation_result)
