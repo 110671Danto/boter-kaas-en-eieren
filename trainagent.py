@@ -10,7 +10,7 @@ while True:
   print("a: start spel")
   print("b: tegen een andere persoon")
   print("c: tegen een domme tegenstander")
-  print("d: tegen een slimme tegenstander")
+  print("d: tegen een slimme ")
   print("e: tegen een getrainde tegenstander")
   i = input()  
   
